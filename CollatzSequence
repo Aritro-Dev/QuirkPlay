@@ -1,0 +1,30 @@
+import java.util.Scanner;
+import java.util.ArrayList;
+
+class CollatzSequence {
+    static ArrayList<Long> sequence = new ArrayList<Long>();
+
+    public static ArrayList<Long> Collatz(long start) {
+        if (start < 1) {
+            return null;
+        } else {
+            sequence.add(new Long(start));
+            if (start % 2 == 0) {
+                return Collatz(start / 2);
+            } else if (start == 1) {
+                return sequence;
+            } else {
+                return Collatz((3 * start) + 1);
+            }
+        }
+    }
+
+    public static void main(String args[]) {
+        ArrayList<Long> here = Collatz((long)13);
+        if (here == null) {
+            System.out.println("Used value is 0 or negative");
+        } else {
+            System.out.println(here.toString());
+        }
+    }
+}
